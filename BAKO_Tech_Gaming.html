@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="BAKO Tech & Gaming — ألعاب، تقنية، شروحات وأدوات مجانية.">
+<title>BAKO Tech & Gaming</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#111827;--muted:#64748b;--primary:#2563eb;--primary2:#1d4ed8;--border:#e5e7eb;--shadow:0 10px 30px #0f172a12}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+button,input{font:inherit}.container{width:min(1180px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:#fffffff2;backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav{height:70px;display:flex;align-items:center;gap:22px}.logo{font-size:27px;font-weight:900;color:var(--primary);letter-spacing:-1px}.logo span{color:#111827}
+nav{display:flex;gap:7px;flex:1}nav button,.link-btn{border:0;background:transparent;padding:9px 12px;border-radius:10px;cursor:pointer;color:#334155}nav button:hover{background:#eff6ff;color:var(--primary)}
+.search{display:flex;align-items:center;gap:8px;background:#f1f5f9;border:1px solid var(--border);border-radius:12px;padding:5px 9px;width:270px}.search input{border:0;outline:0;background:transparent;width:100%;padding:7px}
+.hero{margin:32px 0;padding:55px 7%;border-radius:24px;background:linear-gradient(135deg,#0f172a,#1e3a8a);color:white;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:#3b82f633;left:-80px;top:-100px}.hero>*{position:relative;z-index:1}.hero h1{font-size:clamp(30px,5vw,54px);margin:0 0 10px}.hero p{color:#dbeafe;max-width:650px}.btn{border:0;border-radius:11px;padding:11px 18px;background:var(--primary);color:#fff;cursor:pointer;font-weight:bold}.btn:hover{background:var(--primary2)}
+.section{margin:38px 0}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.section h2{margin:0}.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--card);border:1px solid var(--border);border-radius:17px;overflow:hidden;box-shadow:var(--shadow);transition:.2s}.card:hover{transform:translateY(-3px)}.thumb{height:155px;background:linear-gradient(135deg,#dbeafe,#eef2ff);display:grid;place-items:center;font-size:45px}.card-body{padding:17px}.tag{display:inline-block;font-size:12px;color:var(--primary);background:#eff6ff;padding:3px 8px;border-radius:20px}.card h3{font-size:18px;margin:8px 0}.read{color:var(--primary);background:none;border:0;padding:0;cursor:pointer;font-weight:bold}
+.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.tool{background:#fff;border:1px solid var(--border);border-radius:15px;padding:18px;text-align:center;cursor:pointer}.tool:hover{border-color:#93c5fd}
+.article{display:none;background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px;box-shadow:var(--shadow);margin:30px 0}.article.active{display:block}.article .back{margin-bottom:15px}.article h1{font-size:clamp(28px,5vw,44px);line-height:1.3}.article-content p{color:#334155}.article-content ul{padding-right:20px}
+.tool-panel{display:none;background:#fff;border:1px solid var(--border);border-radius:18px;padding:22px;margin-top:18px}.tool-panel.active{display:block}.tool-panel textarea,.tool-panel input{width:100%;padding:11px;border:1px solid var(--border);border-radius:10px;margin:8px 0}.result{margin-top:10px;background:#f8fafc;padding:12px;border-radius:10px}
+footer{margin-top:55px;background:#0f172a;color:#cbd5e1;padding:35px 0}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:25px}.footer-title{color:white;font-weight:bold}
+.no-results{display:none;text-align:center;padding:35px;background:#fff;border-radius:15px;border:1px solid var(--border)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.tools{grid-template-columns:repeat(2,1fr)}nav{display:none}.search{margin-right:auto;width:210px}}
+@media(max-width:600px){.nav{height:62px}.logo{font-size:23px}.search{width:170px}.hero{padding:35px 24px}.grid{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.thumb{height:135px}}
+</style>
+</head>
+<body>
+<header><div class="container nav">
+<div class="logo">BAKO<span> Tech</span></div>
+<nav>
+<button onclick="home()">الرئيسية</button><button onclick="showCategory('ألعاب PC')">ألعاب PC</button><button onclick="showCategory('أجهزة ضعيفة')">أجهزة ضعيفة</button><button onclick="showCategory('Android')">Android</button><button onclick="showCategory('Windows')">Windows</button><button onclick="scrollTools()">الأدوات</button>
+</nav>
+<div class="search">🔎 <input id="searchInput" placeholder="ابحث في BAKO..." oninput="searchArticles()"></div>
+</div></header>
+
+<main class="container">
+<section id="homeView">
+<section class="hero">
+<h1>BAKO Tech & Gaming</h1>
+<p>تقنية أبسط، ألعاب أكثر. اكتشف شروحات الألعاب، حلول المشاكل، تحسين الأداء وأدوات ويب مجانية في مكان واحد.</p>
+<button class="btn" onclick="document.getElementById('latest').scrollIntoView({behavior:'smooth'})">استكشف المقالات</button>
+</section>
+
+<section class="section"><div class="section-head"><h2>🔥 الأكثر قراءة</h2><span class="muted">اختيارات BAKO</span></div><div class="grid" id="popular"></div></section>
+
+<section class="section" id="toolsSection"><div class="section-head"><h2>🧰 أدوات BAKO</h2><span class="muted">تعمل داخل المتصفح</span></div><div class="tools">
+<div class="tool" onclick="openTool('word')">🔢 عداد الكلمات</div>
+<div class="tool" onclick="openTool('password')">🔐 مولد كلمة مرور</div>
+<div class="tool" onclick="openTool('image')">🖼️ تحويل الصورة إلى Data URL</div>
+<div class="tool" onclick="openTool('calc')">🧮 حاسبة بسيطة</div>
+</div><div id="toolPanel" class="tool-panel"></div></section>
+
+<section class="section" id="latest"><div class="section-head"><h2>📰 أحدث المقالات</h2><span id="count" class="muted"></span></div><div class="grid" id="articles"></div><div id="noResults" class="no-results">لا توجد نتائج مطابقة لبحثك.</div></section>
+</section>
+
+<section id="articleView" class="article"><button class="btn back" onclick="home()">← العودة</button><div id="articleContent"></div></section>
+</main>
+
+<footer><div class="container footer-grid"><div><div class="logo">BAKO</div><p>محتوى تقني وألعاب وأدوات مجانية بواجهة بسيطة وسريعة.</p></div><div><div class="footer-title">روابط</div><p>من نحن</p><p>اتصل بنا</p></div><div><div class="footer-title">معلومات</div><p>سياسة الخصوصية</p><p>شروط الاستخدام</p></div></div></footer>
+
+<script>
+const articles=[
+{id:1,cat:"أجهزة ضعيفة",icon:"🎮",title:"أفضل 15 لعبة تعمل على أجهزة الكمبيوتر الضعيفة",desc:"قائمة ألعاب خفيفة مع نصائح لاختيار الإعدادات المناسبة.",content:"إذا كان جهازك محدود الإمكانيات، لا يعني ذلك أنك لا تستطيع الاستمتاع بألعاب جيدة. ابدأ بالألعاب التي تتناسب مع معالجك وذاكرتك وبطاقتك الرسومية، ثم جرّب إعدادات رسومية منخفضة."},
+{id:2,cat:"الأداء",icon:"⚡",title:"كيفية زيادة FPS في الألعاب بطريقة آمنة",desc:"خطوات عملية لتقليل الحمل على جهازك وتحسين سلاسة اللعب.",content:"ابدأ بتحديث تعريف بطاقة الرسوميات، إغلاق البرامج غير الضرورية، اختيار دقة مناسبة، وتفعيل إعدادات الأداء التي يوفرها النظام واللعبة. تجنب البرامج المشبوهة التي تعد بزيادة ضخمة في الأداء."},
+{id:3,cat:"ألعاب PC",icon:"🕹️",title:"أفضل ألعاب مجانية للكمبيوتر في 2026",desc:"أفكار لألعاب مجانية متنوعة لمحبي الكمبيوتر.",content:"ابحث عن الألعاب المجانية من المتاجر الرسمية ومواقع المطورين، وتحقق دائمًا من متطلبات التشغيل قبل التثبيت."},
+{id:4,cat:"Windows",icon:"🪟",title:"حل مشكلة اللعبة لا تعمل في Windows",desc:"قائمة فحوصات سريعة قبل إعادة تثبيت اللعبة.",content:"تحقق من ملفات اللعبة عبر المتجر إن كانت هذه الميزة متاحة، ثبّت التحديثات الرسمية، راجع تعريفات الرسوميات، وتأكد من أن مواصفات الجهاز تلبي الحد الأدنى."},
+{id:5,cat:"Android",icon:"📱",title:"أفضل ألعاب Android للأجهزة الضعيفة",desc:"نصائح لاختيار ألعاب مناسبة للهواتف محدودة الموارد.",content:"اختر ألعابًا خفيفة، اترك مساحة تخزين كافية، وأغلق التطبيقات غير الضرورية أثناء اللعب."},
+{id:6,cat:"الأداء",icon:"🚀",title:"حل مشكلة تقطيع الألعاب Lag",desc:"أسباب شائعة للتقطيع وطرق تشخيصها.",content:"قد يكون السبب من الشبكة في الألعاب online أو من أداء الجهاز في الألعاب المحلية. راقب استخدام المعالج والذاكرة والشبكة لتحديد المشكلة أولًا."},
+{id:7,cat:"Windows",icon:"🔧",title:"حل مشكلة ملفات DLL المفقودة",desc:"كيف تتعامل مع أخطاء DLL بطريقة آمنة.",content:"لا تحمل ملفات DLL عشوائية من مواقع غير موثوقة. أعد تثبيت الحزمة الرسمية المطلوبة أو أصلح تثبيت البرنامج من مصدره الرسمي."},
+{id:8,cat:"أدوات",icon:"🧰",title:"أفضل أدوات ويب مجانية يحتاجها كل مستخدم",desc:"أدوات بسيطة تساعدك في الصور والملفات والنصوص.",content:"الأدوات المحلية داخل المتصفح مفيدة للمهام البسيطة لأنها تقلل الحاجة إلى رفع الملفات إلى خدمات خارجية."},
+{id:9,cat:"Android",icon:"📲",title:"طرق تحسين أداء Android",desc:"إعدادات بسيطة تساعد على جعل الهاتف أكثر سلاسة.",content:"حدّث النظام والتطبيقات، احذف التطبيقات التي لا تحتاجها، واترك مساحة تخزين مناسبة. تجنب تطبيقات التنظيف المبالغ فيها."},
+{id:10,cat:"ألعاب PC",icon:"🏎️",title:"أفضل ألعاب سباق للأجهزة الضعيفة",desc:"اختيارات مناسبة لمحبي ألعاب السيارات.",content:"تحقق من المتطلبات قبل التنزيل واستخدم إعدادات رسومية منخفضة عند الحاجة."},
+{id:11,cat:"Windows",icon:"💻",title:"أفضل برامج مجانية للكمبيوتر",desc:"برامج عملية للإنتاجية والوسائط والأمان.",content:"اختر البرامج من مواقعها الرسمية وتجنب النسخ المعدلة أو المقرصنة."},
+{id:12,cat:"حلول",icon:"🛠️",title:"حل مشكلة الشاشة السوداء في الألعاب",desc:"فحوصات أولية لمشكلة الشاشة السوداء.",content:"جرّب تشغيل اللعبة بوضع نافذة، تحديث تعريف الرسوميات، والتحقق من دقة الشاشة وإعدادات العرض."}
+];
+
+const popular=[articles[0],articles[1],articles[2]];
+function card(a){return `<article class="card"><div class="thumb">${a.icon}</div><div class="card-body"><span class="tag">${a.cat}</span><h3>${a.title}</h3><p class="muted">${a.desc}</p><button class="read" onclick="openArticle(${a.id})">اقرأ المقال ←</button></div></article>`}
+function render(list=articles){document.getElementById("articles").innerHTML=list.map(card).join("");document.getElementById("count").textContent=list.length+" مقال";document.getElementById("noResults").style.display=list.length?"none":"block"}
+function renderPopular(){document.getElementById("popular").innerHTML=popular.map(card).join("")}
+function openArticle(id){const a=articles.find(x=>x.id===id);document.getElementById("homeView").style.display="none";document.getElementById("articleView").classList.add("active");document.getElementById("articleContent").innerHTML=`<span class="tag">${a.cat}</span><h1>${a.title}</h1><p class="muted">${a.desc}</p><div class="article-content"><p>${a.content}</p><h2>نصائح BAKO</h2><ul><li>اعتمد على المصادر الرسمية قدر الإمكان.</li><li>حدّث البرامج والنظام بانتظام.</li><li>اختر الإعدادات المناسبة لمواصفات جهازك.</li></ul></div>`;scrollTo({top:0,behavior:"smooth"})}
+function home(){document.getElementById("homeView").style.display="block";document.getElementById("articleView").classList.remove("active");document.getElementById("searchInput").value="";render()}
+function searchArticles(){const q=document.getElementById("searchInput").value.trim().toLowerCase();render(articles.filter(a=>(a.title+" "+a.desc+" "+a.cat).toLowerCase().includes(q)));if(q)document.getElementById("latest").scrollIntoView({behavior:"smooth"})}
+function showCategory(cat){document.getElementById("homeView").style.display="block";document.getElementById("articleView").classList.remove("active");render(articles.filter(a=>a.cat===cat));document.getElementById("latest").scrollIntoView({behavior:"smooth"})}
+function scrollTools(){document.getElementById("toolsSection").scrollIntoView({behavior:"smooth"})}
+function openTool(type){const p=document.getElementById("toolPanel");p.classList.add("active");if(type==="word")p.innerHTML=`<h3>🔢 عداد الكلمات</h3><textarea id="wordText" rows="6" placeholder="اكتب النص هنا..."></textarea><button class="btn" onclick="countWords()">احسب</button><div id="toolResult" class="result">عدد الكلمات: 0 | الأحرف: 0</div>`;if(type==="password")p.innerHTML=`<h3>🔐 مولد كلمة مرور</h3><input id="passLen" type="number" min="6" max="64" value="16"><button class="btn" onclick="genPass()">توليد</button><div id="toolResult" class="result"></div>`;if(type==="image")p.innerHTML=`<h3>🖼️ تحويل صورة إلى Data URL</h3><input id="imgFile" type="file" accept="image/*" onchange="toDataURL()"><div id="toolResult" class="result">اختر صورة من جهازك.</div>`;if(type==="calc")p.innerHTML=`<h3>🧮 حاسبة بسيطة</h3><input id="calcA" type="number" placeholder="الرقم الأول"><input id="calcB" type="number" placeholder="الرقم الثاني"><select id="op" style="width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:10px"><option>+</option><option>-</option><option>*</option><option>/</option></select><br><br><button class="btn" onclick="calc()">احسب</button><div id="toolResult" class="result"></div>`;p.scrollIntoView({behavior:"smooth"})}
+function countWords(){const t=document.getElementById("wordText").value.trim();document.getElementById("toolResult").textContent=`عدد الكلمات: ${t?t.split(/\s+/).length:0} | الأحرف: ${t.length}`}
+function genPass(){const chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%";let s="";let n=Math.max(6,Math.min(64,+document.getElementById("passLen").value||16));for(let i=0;i<n;i++)s+=chars[Math.floor(Math.random()*chars.length)];document.getElementById("toolResult").textContent=s}
+function toDataURL(){const f=document.getElementById("imgFile").files[0];if(!f)return;const r=new FileReader();r.onload=()=>document.getElementById("toolResult").textContent=r.result;r.readAsDataURL(f)}
+function calc(){const a=+document.getElementById("calcA").value,b=+document.getElementById("calcB").value,o=document.getElementById("op").value;let r=o==="+"?a+b:o==="-"?a-b:o==="*"?a*b:b===0?"لا يمكن القسمة على صفر":a/b;document.getElementById("toolResult").textContent="النتيجة: "+r}
+render();renderPopular();
+</script>
+</body>
+</html>
